@@ -1,0 +1,37 @@
+Description of data and code
+04/11/2019 Xiao Peng
+
+Folder1 resistome_original_data:
+There are two subfolders inside. One is all data collected from plate reader in microscope room(X3), the other is for normal Tecan(J,K,loaner).
+In each folder there is a loaddata.m file, which is used to read original excel file and generate mat file.
+
+Note, for data recorded from X3, as the format saved is an old version, the matlab cannot directly read that. What I did before is to open the file in excel and save as a latest version, delete the old file, and use the new version file in matlab.
+
+Note, the generated mat files could contain multiple extra blank data, which will be deleted later when matching with TAG (strain ID) in folder2, match_data_plot.m.
+
+Folder2 resistome_mat_data&code:
+This folder contains all growth curve mat files, with growth curve (after minus blank) in row with 6 replicates. Meanwhile, it includes m file used to match strain number with curves, and m file used to generate final training dataset.
+
+(1) match_data_plot.m
+This code is used to compile all mat data and match data with strain ID in match_data_plot.xlsx.
+The code also save 4 final mat files: 
+
+'Straindata_new_0308new.mat': data with 12 replicates 
+'Straindata_single_0308.mat':data with only 6 replicates
+'Straindata_multi_0308.mat':data with 24 repicates
+'Straindata_trip_0308.mat': data with 18 replicates
+
+(2)data_combine_0308.m
+This is used to combine all mat file together and delete extra replicates.
+The saved mat file "Straindata_latest_0308.mat".
+
+(3)Straindata_latest_0308.mat
+This file contains all growth curves with strain ID in the first col. Each strain has 12 replicates collected from 2 runs. The data was recorded in row.
+
+(4)match_data_plot.xlsx
+This is used as the TAG of each strain, the file would be read into match_data_plot.m.
+
+(5)Resistome_machine_record.xlsx
+This file includes all original information of each run and machine used.
+
+
