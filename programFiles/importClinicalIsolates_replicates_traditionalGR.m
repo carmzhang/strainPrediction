@@ -14,7 +14,7 @@
 %                this dataset is missing strains 60-71 from the anderson library
 
 outputType = 'gr';
-seq = 'snp';%other option is mlst
+seq = 'snp';%options are either snp or mlst
 
 %import files
 files = 'no antibiotic data_clean_all.xlsx';
@@ -38,7 +38,7 @@ datFin = datFin - min(min(datFin))+0.0000001;
 
 if(ismember(outputType, {'AUC', 'u+AUC'}))
     % calculate AUC 
-    AUC1 = trapz(datFin, 2);
+    AUC = trapz(datFin, 2);
     
     if(ismember(outputType, {'AUC'}))
         datFin = AUC;
@@ -193,7 +193,7 @@ kernelOpt = 0;
 [per_kernel_2, avg_per_kernel_2, max_acc_2, optimized_2, validation_acc_2, train_acc_2] = clinSVMOpt_bioRep(data, repl, fold, holdout, topk, kernelOpt);
 
 %Ex 1 output
-disp('3 fold CV with holdout - 10,000x growth condition')
+disp('2 fold CV with holdout - 10,000x growth condition')
 disp('Optimal SVM hyperparameters: ')
 disp(optimized)
 disp('CV accuracy: ')
@@ -202,7 +202,7 @@ disp('Validation set accuracy: ')
 disp(validation_acc)
 
 %Ex 2 output
-disp('4 fold CV without holdout - 10,000x growth condition')
+disp('3 fold CV without holdout - 10,000x growth condition')
 disp('Optimal SVM hyperparameters: ')
 disp(optimized_2)
 disp('CV accuracy: ')
