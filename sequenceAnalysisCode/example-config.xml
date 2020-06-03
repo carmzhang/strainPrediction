@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<NaspInputData>
+    <Options>
+        <RunName>Eukaryota</RunName>
+        <OutputFolder>/hwfssz5/ST_INFECTION/Phage/P17Z10200N0246_Phage_XMF/songwenchen/Duketree/o_split_results/Eukaryota</OutputFolder>
+        <Reference name="FS211" path="/hwfssz5/ST_INFECTION/Phage/P17Z10200N0246_Phage_XMF/songwenchen/Duketree/data_o/data_Eukaryota/FS211.fasta">
+            <FindDups>True</FindDups>
+        </Reference>
+        <Filters/>
+        <JobSubmitter>SGE</JobSubmitter>
+        <FilterMatrixFormat>include_allref_pos</FilterMatrixFormat>
+    </Options>
+    <Files>
+        <AssemblyFolder path="/hwfssz5/ST_INFECTION/Phage/P17Z10200N0246_Phage_XMF/songwenchen/Duketree/data_o/data_Eukaryota">
+            <Assembly sample="FS367">FS367.fasta</Assembly>
+        </AssemblyFolder>
+    </Files>
+    <ExternalApplications>
+        <Index name="Index" path="/ldfssz1/ST_INFECTION/P17Z10200N0246_Phage_XMF/USER/songwenchen/software/python35/bin">
+            <AdditionalArguments/>
+            <JobParameters name="nasp_index">
+                <MemRequested>2</MemRequested>
+                <NumCPUs>1</NumCPUs>
+                <Walltime>4</Walltime>
+                <Queue>st.q</Queue>
+                <JobSubmitterArgs>-P P17Z10200N0246 -binding linear:2</JobSubmitterArgs>
+            </JobParameters>
+        </Index>
+        <MatrixGenerator name="MatrixGenerator" path="/hwfssz1/ST_META/P17Z10200N0246_Phage_XMF/software/python35/lib/python3.5/site-packages/nasp-1.0.2-py3.5.egg/nasp/nasptool_linux_64">
+            <AdditionalArguments/>
+            <JobParameters name="nasp_matrix">
+                <MemRequested>4</MemRequested>
+                <NumCPUs>4</NumCPUs>
+                <Walltime>48</Walltime>
+                <Queue>st.q</Queue>
+                <JobSubmitterArgs>-P P17Z10200N0246 -binding linear:2</JobSubmitterArgs>
+            </JobParameters>
+        </MatrixGenerator>
+        <Samtools name="Samtools" path="/ldfssz1/ST_INFECTION/P17Z10200N0246_Phage_XMF/USER/songwenchen/software/anconda2/bin/samtools">
+            <AdditionalArguments/>
+        </Samtools>
+        <DupFinder name="DupFinder" path="/share/app/MUMmer-3.23/nucmer">
+            <AdditionalArguments/>
+            <JobParameters>
+                <MemRequested>4</MemRequested>
+                <NumCPUs>1</NumCPUs>
+                <Walltime>4</Walltime>
+                <Queue>st.q</Queue>
+                <JobSubmitterArgs>-P P17Z10200N0246 -binding linear:2</JobSubmitterArgs>
+            </JobParameters>
+        </DupFinder>
+        <AssemblyImporter name="AssemblyImporter" path="/share/app/MUMmer-3.23/delta-filter">
+            <AdditionalArguments/>
+            <JobParameters>
+                <MemRequested>4</MemRequested>
+                <NumCPUs>1</NumCPUs>
+                <Walltime>4</Walltime>
+                <Queue>st.q</Queue>
+                <JobSubmitterArgs>-P P17Z10200N0246 -binding linear:2</JobSubmitterArgs>
+            </JobParameters>
+        </AssemblyImporter>
+    </ExternalApplications>
+</NaspInputData>
